@@ -1,0 +1,351 @@
+$main: #1c202a;
+$menu: #15171e;
+$secondary: #191c25;
+$alert: #ff5554;
+$inputs: #15171e;
+$button: #343c53;
+$white: #ffffff;
+$black: #000000;
+
+body {
+    background-color: $main;
+    font-family: 'Roboto', sans-serif;
+    textarea:focus, input:focus, button {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #15171e inset;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+.alert-danger {
+    background-color: $alert;
+}
+
+.alert-success {
+    background-color: #51cc41;
+}
+
+#main-nav {
+    background-color: $menu;
+    width: 100%;
+    height: 50px;
+    #social-media, #links {
+        color: $white;
+        line-height: 50px;
+        font-size: 1.3em;
+    }
+    #social-media {
+        display: inline-block;
+        padding-left: 2em;
+        a {
+            color: $white;
+        }
+        #twitter {
+            font-size: 1.3em;
+        }
+    }
+    #links {
+        display: inline-block;
+        padding-right: 2em;
+        a {
+            color: $white;
+            text-decoration: none;
+            margin-left: .4em;
+            i {
+                font-size: 1.2em;
+            }
+        }
+        #user {
+            padding-left: .3em;
+            #username {
+                padding-left: .8em;
+                font-size: 1em;
+            }
+        }
+        #login {
+            padding-right: 0;
+        }
+    }
+}
+
+#logo {
+    margin-top: 4em;
+    margin-bottom: 6em;
+}
+
+#login-page {
+    width: 400px;
+    margin: 0 auto;
+    max-width: 90%;
+    .alert {
+        border: none;
+        color: $white;
+        font-size: 1.1em;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .warning-sign {
+            float: left;
+            font-size: 1.5em;
+            line-height: 1;
+        }
+        button {
+            color: #000;
+            opacity: .4;
+        }
+    }
+    #login {
+        background-color: $secondary;
+        padding: 2em 4em;
+        form {
+            #user-input, #password-input, #email-input {
+                margin-bottom: .4em;
+                height: 40px;
+                span, input {
+                    border: none;
+                    background-color: $inputs;
+                    border-radius: 0;
+                    height: 40px;
+                    i {
+                        color: $white;
+                        font-size: 1.2em;
+                    }
+                }
+                input {
+                    color: $white;
+                    font-size: 1.2em;
+                }
+            }
+
+            #email-input {
+                input {
+                    padding-left: .4em;
+                }
+            }
+            #login-btn {
+                width: 150px;
+                margin-top: 1.4em;
+                background-color: #343c53;
+                border: none;
+            }        
+        }
+        #no-account {
+            width: 100%;
+            text-align: center;
+            margin-top: 1.4em;
+            margin-bottom: 3em;
+            a {
+                color: $white;
+                text-decoration: none;
+                opacity: .5;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+#main-page {
+    width: 1200px;
+    max-width: 90%;
+    margin: 0 auto;
+    max-width: 90%;
+    #deposit-alert {
+        text-align: center;
+        border: none;
+        color: $white;
+        font-size: 1.1em;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .warning-sign {
+            float: left;
+            font-size: 1.5em;
+            line-height: 1;
+        }
+        button {
+            color: #000;
+            opacity: .4;
+        }
+    }
+    #deposit-container {
+        position: relative;
+        background-color: #191c25;
+        .col-md-3, .col-md-5 {
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .weapon-slot-container {
+            width: 100%;
+            padding-bottom: 100%;
+            border: 1px solid #343c53;
+            transition: background-color .4s;
+            &:hover {
+                background-color: rgba(255, 255, 255, .05);
+            }
+            overflow: hidden;
+            .weapon-slot {
+                position: absolute;
+                top: 20px;
+                right: 10px;
+                bottom: 0px;
+                left: 10px;
+                text-align: center;
+                overflow: hidden;
+                img {
+                    margin-bottom: 15px;
+                }
+                .itemName {
+                    color: $white;
+                    display: block;
+                    font-size: .8em;
+                    padding-bottom: 0px;
+                }
+                .exterior {
+                    color: $white;
+                    display: block;
+                    font-size: .8em;
+                    padding-bottom: 5px;
+                }
+                .price {
+                    color: $white;
+                    font-weight: bold;
+                    font-size: 1em;
+                }
+            }
+        }
+        #controls {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            #balance {
+                width: 100%;
+                height: 80px;
+                background-color: $black;
+                text-align: center;
+                color: $white;
+                line-height: 80px;
+                font-size: 2em;
+                font-weight: bold;
+                span {
+                    margin-left: 0.2em;
+                }
+            }
+            #deposit {
+                width: 100%;
+                margin-top: 1.8em;
+                text-align: center;
+                button {
+                    display: block;
+                    background-color: $button;
+                    border: 0;
+                    border-radius: 0;
+                    padding: .4em 4em;
+                    font-size: 1.3em;
+                    font-weight: bold;
+                }
+                span {
+                    color: rgba(255, 255, 255, .5);
+                    display: block;
+                    font-size: .9em;
+                    padding: 1.4em 4em 0 4em;
+
+                }
+            }
+            #gift-code {
+                width: 100%;
+                text-align: center;
+                margin-top: 3em;
+                input {
+                    background-color: $black;
+                    border: 0;
+                    width: 75%;
+                    margin: 0 auto;
+                    font-size: 1.3em;
+                    color: $white;
+                    padding: 1.3em 5em;
+                }
+                
+                ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+                    color: $white;
+                    text-align: center;
+                    opacity: .85;
+                }
+                :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                   color: $white;
+                   opacity: .85;
+                }
+                ::-moz-placeholder { /* Mozilla Firefox 19+ */
+                   color: $white;
+                   opacity: .85;
+                }
+                :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                   color: $white;
+                   opacity: .85;
+                }
+                ::-ms-input-placeholder { /* Microsoft Edge */
+                   color: $white;
+                   opacity: .85;
+                }
+                button {
+                    background-color: $button;
+                    border: 0;
+                    border-radius: 0;
+                    font-weight: bold;
+                    padding: .6em 2em;
+                    margin-top: 1em;
+                }
+            }
+            #withdraw {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: 1.5em;
+                text-align: center;
+                color: $white;
+                #selected {
+                    display: block;
+                    font-size: 1.3em;
+                    padding-bottom: 1em;
+                }
+                button {
+                    background-color: $alert;
+                    border-radius: 0;
+                    padding: .5em 4em;
+                    font-size: 1.2em;
+                }
+            }
+        }
+    }
+}
+
+#closed-page {
+    width: 100%;
+    color: $white;
+    #closed {
+        width: 100%;
+        text-align: center;
+        margin-top: 18em;
+        h1 {
+            color: #484a50;
+            font-size: 4em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+        h3 {
+            color: rgba(255, 255, 255, .5);
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 0;
+        }
+    }
+}

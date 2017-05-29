@@ -1,0 +1,275 @@
+body {
+  background-color: #1c202a;
+  font-family: 'Roboto', sans-serif; }
+  body textarea:focus, body input:focus, body button {
+    outline: none !important;
+    box-shadow: none !important; }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #15171e inset;
+  -webkit-text-fill-color: #ffffff !important;
+  background-color: #ffffff !important; }
+
+.alert-danger {
+  background-color: #ff5554; }
+
+.alert-success {
+  background-color: #51cc41; }
+
+#main-nav {
+  background-color: #15171e;
+  width: 100%;
+  height: 50px; }
+  #main-nav #social-media, #main-nav #links {
+    color: #ffffff;
+    line-height: 50px;
+    font-size: 1.3em; }
+  #main-nav #social-media {
+    display: inline-block;
+    padding-left: 2em; }
+    #main-nav #social-media a {
+      color: #ffffff; }
+    #main-nav #social-media #twitter {
+      font-size: 1.3em; }
+  #main-nav #links {
+    display: inline-block;
+    padding-right: 2em; }
+    #main-nav #links a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: .4em; }
+      #main-nav #links a i {
+        font-size: 1.2em; }
+    #main-nav #links #user {
+      padding-left: .3em; }
+      #main-nav #links #user #username {
+        padding-left: .8em;
+        font-size: 1em; }
+    #main-nav #links #login {
+      padding-right: 0; }
+
+#logo {
+  margin-top: 4em;
+  margin-bottom: 6em; }
+
+#login-page {
+  width: 400px;
+  margin: 0 auto;
+  max-width: 90%; }
+  #login-page .alert {
+    border: none;
+    color: #ffffff;
+    font-size: 1.1em;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    #login-page .alert .warning-sign {
+      float: left;
+      font-size: 1.5em;
+      line-height: 1; }
+    #login-page .alert button {
+      color: #000;
+      opacity: .4; }
+  #login-page #login {
+    background-color: #191c25;
+    padding: 2em 4em; }
+    #login-page #login form #user-input, #login-page #login form #password-input, #login-page #login form #email-input {
+      margin-bottom: .4em;
+      height: 40px; }
+      #login-page #login form #user-input span, #login-page #login form #user-input input, #login-page #login form #password-input span, #login-page #login form #password-input input, #login-page #login form #email-input span, #login-page #login form #email-input input {
+        border: none;
+        background-color: #15171e;
+        border-radius: 0;
+        height: 40px; }
+        #login-page #login form #user-input span i, #login-page #login form #user-input input i, #login-page #login form #password-input span i, #login-page #login form #password-input input i, #login-page #login form #email-input span i, #login-page #login form #email-input input i {
+          color: #ffffff;
+          font-size: 1.2em; }
+      #login-page #login form #user-input input, #login-page #login form #password-input input, #login-page #login form #email-input input {
+        color: #ffffff;
+        font-size: 1.2em; }
+    #login-page #login form #email-input input {
+      padding-left: .4em; }
+    #login-page #login form #login-btn {
+      width: 150px;
+      margin-top: 1.4em;
+      background-color: #343c53;
+      border: none; }
+    #login-page #login #no-account {
+      width: 100%;
+      text-align: center;
+      margin-top: 1.4em;
+      margin-bottom: 3em; }
+      #login-page #login #no-account a {
+        color: #ffffff;
+        text-decoration: none;
+        opacity: .5; }
+        #login-page #login #no-account a:hover {
+          opacity: 1; }
+
+#main-page {
+  width: 1200px;
+  max-width: 90%;
+  margin: 0 auto;
+  max-width: 90%; }
+  #main-page #deposit-alert {
+    text-align: center;
+    border: none;
+    color: #ffffff;
+    font-size: 1.1em;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    #main-page #deposit-alert .warning-sign {
+      float: left;
+      font-size: 1.5em;
+      line-height: 1; }
+    #main-page #deposit-alert button {
+      color: #000;
+      opacity: .4; }
+  #main-page #deposit-container {
+    position: relative;
+    background-color: #191c25; }
+    #main-page #deposit-container .col-md-3, #main-page #deposit-container .col-md-5 {
+      padding: 0;
+      box-sizing: border-box; }
+    #main-page #deposit-container .weapon-slot-container {
+      width: 100%;
+      padding-bottom: 100%;
+      border: 1px solid #343c53;
+      transition: background-color .4s;
+      overflow: hidden; }
+      #main-page #deposit-container .weapon-slot-container:hover {
+        background-color: rgba(255, 255, 255, 0.05); }
+      #main-page #deposit-container .weapon-slot-container .weapon-slot {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        bottom: 0px;
+        left: 10px;
+        text-align: center;
+        overflow: hidden; }
+        #main-page #deposit-container .weapon-slot-container .weapon-slot img {
+          margin-bottom: 15px; }
+        #main-page #deposit-container .weapon-slot-container .weapon-slot .itemName {
+          color: #ffffff;
+          display: block;
+          font-size: .8em;
+          padding-bottom: 0px; }
+        #main-page #deposit-container .weapon-slot-container .weapon-slot .exterior {
+          color: #ffffff;
+          display: block;
+          font-size: .8em;
+          padding-bottom: 5px; }
+        #main-page #deposit-container .weapon-slot-container .weapon-slot .price {
+          color: #ffffff;
+          font-weight: bold;
+          font-size: 1em; }
+    #main-page #deposit-container #controls {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%; }
+      #main-page #deposit-container #controls #balance {
+        width: 100%;
+        height: 80px;
+        background-color: #000000;
+        text-align: center;
+        color: #ffffff;
+        line-height: 80px;
+        font-size: 2em;
+        font-weight: bold; }
+        #main-page #deposit-container #controls #balance span {
+          margin-left: 0.2em; }
+      #main-page #deposit-container #controls #deposit {
+        width: 100%;
+        margin-top: 1.8em;
+        text-align: center; }
+        #main-page #deposit-container #controls #deposit button {
+          display: block;
+          background-color: #343c53;
+          border: 0;
+          border-radius: 0;
+          padding: .4em 4em;
+          font-size: 1.3em;
+          font-weight: bold; }
+        #main-page #deposit-container #controls #deposit span {
+          color: rgba(255, 255, 255, 0.5);
+          display: block;
+          font-size: .9em;
+          padding: 1.4em 4em 0 4em; }
+      #main-page #deposit-container #controls #gift-code {
+        width: 100%;
+        text-align: center;
+        margin-top: 3em; }
+        #main-page #deposit-container #controls #gift-code input {
+          background-color: #000000;
+          border: 0;
+          width: 75%;
+          margin: 0 auto;
+          font-size: 1.3em;
+          color: #ffffff;
+          padding: 1.3em 5em; }
+        #main-page #deposit-container #controls #gift-code ::-webkit-input-placeholder {
+          /* WebKit, Blink, Edge */
+          color: #ffffff;
+          text-align: center;
+          opacity: .85; }
+        #main-page #deposit-container #controls #gift-code :-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #ffffff;
+          opacity: .85; }
+        #main-page #deposit-container #controls #gift-code ::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #ffffff;
+          opacity: .85; }
+        #main-page #deposit-container #controls #gift-code :-ms-input-placeholder {
+          /* Internet Explorer 10-11 */
+          color: #ffffff;
+          opacity: .85; }
+        #main-page #deposit-container #controls #gift-code ::-ms-input-placeholder {
+          /* Microsoft Edge */
+          color: #ffffff;
+          opacity: .85; }
+        #main-page #deposit-container #controls #gift-code button {
+          background-color: #343c53;
+          border: 0;
+          border-radius: 0;
+          font-weight: bold;
+          padding: .6em 2em;
+          margin-top: 1em; }
+      #main-page #deposit-container #controls #withdraw {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 1.5em;
+        text-align: center;
+        color: #ffffff; }
+        #main-page #deposit-container #controls #withdraw #selected {
+          display: block;
+          font-size: 1.3em;
+          padding-bottom: 1em; }
+        #main-page #deposit-container #controls #withdraw button {
+          background-color: #ff5554;
+          border-radius: 0;
+          padding: .5em 4em;
+          font-size: 1.2em; }
+
+#closed-page {
+  width: 100%;
+  color: #ffffff; }
+  #closed-page #closed {
+    width: 100%;
+    text-align: center;
+    margin-top: 18em; }
+    #closed-page #closed h1 {
+      color: #484a50;
+      font-size: 4em;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 0; }
+    #closed-page #closed h3 {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1em;
+      font-weight: bold;
+      margin-top: 0; }

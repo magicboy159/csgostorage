@@ -1,0 +1,48 @@
+<main class="main-section" id="login-page">
+    <div id="logo">
+        <img src="images/logo.png" class="img-responsive center-block" alt="CSGOStorage beta">
+    </div>
+    {{#if message_fail}}
+        {{#each }}
+            <div class="alert alert-danger alert-dismissible" role="alert" id="deposit-alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ this }}
+            </div>
+        {{/each}}
+    {{/if}}
+    {{#if message_succ}}
+        <div class="alert alert-success">{{this}}</div>
+    {{/if}}
+    {{#if errors}}
+        {{#each errors}}
+                <div class="alert alert-danger alert-dismissible" role="alert" id="deposit-alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{this.msg}}
+                </div>
+        {{/each}}
+    {{/if}}
+    <div id="login">
+        <form action="/register" method="POST" autocomplete="off">
+            <div class="input-group" id="user-input">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="Username" name="username">
+            </div>
+            <div class="input-group" id="email-input">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="email" class="form-control" placeholder="Email" name="email">
+            </div>
+            <div class="input-group" id="password-input">
+                <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+                <input type="password" class="form-control" placeholder="Password" name="password">
+            </div>
+            <div class="input-group" id="password-input">
+                <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+                <input type="password" class="form-control" placeholder="Re-enter password" name="password2">
+            </div>
+            <input type="submit" class="btn btn-primary center-block" id="login-btn" value="Register">
+        </form>
+        <div id="no-account">
+            <a href="/login">Already have an account? Login here!</a>
+        </div>
+    </div>
+</main>
