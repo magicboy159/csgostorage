@@ -75,7 +75,9 @@ app.use(expressValidator({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({
-    secret: 'Np3fBH6fM1XxdfQrAXQk'
+    secret: 'Np3fBH6fM1XxdfQrAXQk',
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
