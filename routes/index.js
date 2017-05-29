@@ -5,13 +5,21 @@ var User = require('../models/user');
 var Item = require('../models/item')
 
 module.exports = function(passport) {
+    router.use(function(req, res, next) {
+        res.locals.loginMessage_fail = req.flash('loginMessage_fail');
+        res.locals.loginMessage_succ = req.flash('loginMessage_succ');
+        res.locals.registerMessage_fail = req.flash('registerMessage_fail');
+        res.locals.registerMessage_succ = req.flash('registerMessage_succ');
+        res.locals.indexMessage_succ = req.flash('indexMessage_succ');
+        next();
+    });
+
     /* GET home page. */
     router.get('/', function(req, res, next) {
 
         var items = Item.find({}, function(err, items) {
             res.render('index', { 
                 user: req.user,
-                message_succ: req.flash('indexMessage_succ'),
                 items: items
             });
         });
@@ -19,10 +27,7 @@ module.exports = function(passport) {
     });
 
     router.get('/login', function(req, res) {
-        res.render('login', {
-            message_fail: req.flash('loginMessage_fail'),
-            message_succ: req.flash('loginMessage_succ')
-        });
+        res.render('login');
     });
 
     router.post('/login', passport.authenticate('local-login', {
@@ -31,10 +36,7 @@ module.exports = function(passport) {
     }));
 
     router.get('/register', function(req, res) {
-        res.render('register', {
-            message_fail: req.flash('registerMessage_fail'),
-            message_succ: req.flash('registerMessage_succ')
-        });
+        res.render('register');
     });
 
     router.post('/register', function(req, res) {
@@ -51,7 +53,6 @@ module.exports = function(passport) {
 
         var errors = req.validationErrors();
         if(errors) {
-            console.log(errors);
             res.render('register', {
                 errors: errors
             });
@@ -85,7 +86,7 @@ module.exports = function(passport) {
     });
 
     router.post('/settings', isLoggedIn, function(req, res) {
-        
+
     });
 
     router.get('/logout', function(req, res) {
