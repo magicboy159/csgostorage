@@ -133,6 +133,8 @@ input:-webkit-autofill:active {
     #main-page #deposit-container .col-md-3, #main-page #deposit-container .col-md-5 {
       padding: 0;
       box-sizing: border-box; }
+    #main-page #deposit-container .weapon-slot-container.highlighted {
+      background-color: rgba(255, 255, 255, 0.2); }
     #main-page #deposit-container .weapon-slot-container {
       width: 100%;
       padding-bottom: 100%;
@@ -140,7 +142,7 @@ input:-webkit-autofill:active {
       transition: background-color .4s;
       overflow: hidden; }
       #main-page #deposit-container .weapon-slot-container:hover {
-        background-color: rgba(255, 255, 255, 0.05); }
+        background-color: rgba(255, 255, 255, 0.2); }
       #main-page #deposit-container .weapon-slot-container .weapon-slot {
         position: absolute;
         top: 20px;

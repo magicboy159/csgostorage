@@ -182,14 +182,18 @@ input:-webkit-autofill:active {
             padding: 0;
             box-sizing: border-box;
         }
+        .weapon-slot-container.highlighted {
+            background-color: rgba(255, 255, 255, .2);
+        }
         .weapon-slot-container {
             width: 100%;
             padding-bottom: 100%;
             border: 1px solid #343c53;
             transition: background-color .4s;
             &:hover {
-                background-color: rgba(255, 255, 255, .05);
+                background-color: rgba(255, 255, 255, .2);
             }
+
             overflow: hidden;
             .weapon-slot {
                 position: absolute;
