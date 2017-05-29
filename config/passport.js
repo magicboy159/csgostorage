@@ -22,22 +22,24 @@ module.exports = function(passport) {
     passport.use('local-login', new LocalStrategy({
         passReqToCallback: true
     }, function(req, username, password, done) {
-        User.findOne({'username': username}, function(err, user) {
-            if(err) {
-                return done(err);
-            }
+        process.nextTick(function() {
+            User.findOne({'username': username}, function(err, user) {
+                if(err) {
+                    return done(err);
+                }
 
-            if(!user) {
-                return done(null, false, req.flash('loginMessage_fail', 'Invalid Credentials'));
-            }
+                if(!user) {
+                    return done(null, false, req.flash('loginMessage_fail', 'Invalid Credentials'));
+                }
 
-            if(!user.validPassword(password)) {
-                return done(null, false, req.flash('loginMessage_fail', 'Invalid Credentials'));
-            }
+                if(!user.validPassword(password)) {
+                    return done(null, false, req.flash('loginMessage_fail', 'Invalid Credentials'));
+                }
 
-            req.flash('indexMessage_succ', 'You are now logged in');
+                req.flash('indexMessage_succ', 'You are now logged in');
 
-            return done(null, user);
+                return done(null, user);
+            });
         });
     }));
 

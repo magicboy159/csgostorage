@@ -16,9 +16,17 @@ var userSchema = mongoose.Schema({
     tradeUrl: {
         type: String
     },
+    credits: {
+        type: Number,
+        default: 0
+    },
     joined: {
         type: Date,
         default: Date.now
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -50,4 +58,8 @@ module.exports.createUser = function(newUser, callback) {
             });
         });
     })
+}
+
+module.exports.getUsers = function(callback) {
+    User.find({}).sort({joined: -1}).limit(5).exec(callback);
 }
