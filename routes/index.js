@@ -2,13 +2,26 @@ var express = require('express');
 var router = express.Router();
 
 var moment = require('moment');
+var multer = require('multer');
+var path = require('path');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, '../uploads'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'Skin');
+  }
+})
+
+
 
 var User = require('../models/user');
-var Item = require('../models/item')
+var Item = require('../models/item');
 var Sitedata = require('../models/sitedata');
 
 module.exports = function(passport) {
 
+    router.use('/admin/*', requiresAdmin);
     router.use(closed);
 
     router.use(function(req, res, next) {
@@ -19,8 +32,6 @@ module.exports = function(passport) {
         res.locals.indexMessage_succ = req.flash('indexMessage_succ');
         next();
     });
-
-    //router.use('/admin/*', requiresAdmin);
 
     /* GET home page. */
     router.get('/', function(req, res, next) {
@@ -35,7 +46,11 @@ module.exports = function(passport) {
     });
 
     router.get('/login', function(req, res) {
-        res.render('login');
+        if(req.user) {
+            res.redirect('/');
+        } else {
+            res.render('login');
+        }
     });
 
     router.post('/login', function(req, res, next) {
@@ -53,7 +68,11 @@ module.exports = function(passport) {
     });
 
     router.get('/register', function(req, res) {
-        res.render('register');
+        if(req.user) {
+            res.redirect('/');
+        } else {
+            res.render('register');
+        }
     });
 
     router.post('/register', function(req, res) {
@@ -102,8 +121,35 @@ module.exports = function(passport) {
 
     });
 
-    router.post('/settings', isLoggedIn, function(req, res) {
+    router.post('/settings/:id', isLoggedIn, function(req, res) {
+        var userId = req.params.id;
+        var update = {
+            tradeUrl: req.body.tradeurl
+        }
+        User.updateUser(userId, update, function(raw) {
+            res.redirect('/');
+        });
+    });
 
+    router.get('/admin', function(req, res) {
+        res.render('./admin/login');
+    });
+
+    router.post('/admin', function(req, res, next) {
+        passport.authenticate('local-login', function(err, user, info) {
+            if(err) { return next(err) }
+            if(!user) { return res.redirect('/admin') }
+            req.logIn(user, function(err) {
+                if(err) { return next(err) }
+                if(user.isAdmin) {
+                    console.log('USER IS ADMIN');
+                    return res.redirect('/admin/dashboard');
+                } else {
+                    req.logout();
+                    return res.redirect('/admin');
+                }
+            });
+        })(req, res, next);
     });
 
     router.get('/admin/dashboard', function(req, res) {
@@ -115,6 +161,7 @@ module.exports = function(passport) {
                 user.email = users[i].email;
                 user.joined = moment(users[i].joined).format('DD MMM YYYY');
                 user.credits = users[i].credits;
+                user.tradeUrl = users[i].tradeUrl;
                 editedUsers.push(user);
             }
             Sitedata.isClosed(function(closed) {
@@ -135,15 +182,95 @@ module.exports = function(passport) {
 
     router.get('/admin/users', function(req, res) {
         User.getUsers(function(err, users) {
-
+            var editedUsers = [];
+            for (var i = 0; i < users.length; i++) {
+                var user = {}
+                user.username = users[i].username;
+                user.email = users[i].email;
+                user.joined = moment(users[i].joined).format('DD MMM YYYY');
+                user.credits = users[i].credits;
+                user.tradeUrl = users[i].tradeUrl;
+                user.id = users[i].id;
+                user.isAdmin = users[i].isAdmin;
+                editedUsers.push(user);
+            }
+            res.render('./admin/users', {
+                layout: 'adminpanel',
+                page: {
+                    users: true
+                },
+                users: editedUsers
+            });
         });
     });
 
-    router.post('/admin/action', function(req, res) {
-        Sitedata.toggleClosed(function(state, raw) {
-            res.redirect('/admin/dashboard');
+    router.get('/admin/skins', function(req, res) {
+        //Item.resetItems();
+        User.getUsers(function(err, users) {
+            Item.getItems(function(err, items) {
+                res.render('./admin/skins', {
+                    layout: 'adminpanel',
+                    page: {
+                        skins: true
+                    },
+                    users: users,
+                    items: items
+                });
+            })
         });
     });
+
+    var upload = multer({storage: storage}).any();
+    router.post('/admin/action/updateskin', function(req, res) {
+        upload(req, res, function(err) {
+            if(err) {
+                console.log(err);
+            }
+        })
+    });
+
+    router.get('/admin/action/:action/:userid?', function(req, res) {
+        var action = req.params.action;
+        var userId = req.params.userid;
+        
+        if(action === 'toggleclosed') {
+            Sitedata.toggleClosed(function(state, raw) {
+                res.redirect('/admin/dashboard');
+            });
+        }
+
+        if(action == 'deleteuser') {
+            User.findByIdAndRemove(userId, function(err, doc){
+                if(err) {
+                    throw err;
+                }
+                res.redirect('/admin/users')
+            });
+        }
+    });
+
+    router.post('/admin/action/:action/:userid?', function(req, res) {
+        var action = req.params.action;
+        var userId = req.params.userid;
+        
+        if((action === 'edituser') && userId) {
+            var update = {
+                username: req.body.username,
+                email: req.body.email,
+                tradeUrl: req.body.tradeUrl,
+                credits: req.body.credits,
+                isAdmin: req.body.isAdmin
+            }
+
+            User.updateUser(userId, update, function(raw) {
+                console.log(raw);
+            })
+                
+        }
+
+        res.redirect('/admin/users');
+    });
+    
 
     router.get('/logout', function(req, res) {
         req.logout();
@@ -180,7 +307,8 @@ function closed(req, res, next) {
         var path = req.path;
 
         if(closed) {
-            if(path.match(/\/admin\/[a-z]*/)) {
+            //if(path.match(/\/admin\/[a-z]*/)) {
+            if((req.isAuthenticated() && req.user && req.user.isAdmin === true) || path == '/admin') {
                 next();
             } else {
                 res.render('closed', {

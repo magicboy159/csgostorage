@@ -4,125 +4,39 @@
         </div>
         {{#if indexMessage_succ}}
             {{#each indexMessage_succ}}
-                <div class="alert alert-success alert-dismissible" role="alert" id="deposit-alert">
+                <div class="alert alert-success alert-dismissible deposit-alert" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     {{ this }}
                 </div>
             {{/each}}
         {{/if}}
-        <div class="alert alert-danger alert-dismissible" role="alert" id="deposit-alert">
+        {{#unless user}}
+            <div class="alert alert-danger alert-dismissible deposit-alert hidden" role="alert" id="login-alert">
+                <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="warning-sign"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                You must login in order to peform this action.
+            </div>
+        {{/unless}}
+        <div class="alert alert-danger alert-dismissible deposit-alert hidden" id="need-tradeurl" role="alert">
+            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="warning-sign"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+            In order to withdraw you must provide a tradeurl.
+        </div>
+        <div class="alert alert-danger alert-dismissible deposit-alert hidden" id="funds-alert" role="alert" id="funds-alert">
+            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="warning-sign"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+            Insufficient funds to withdraw this item.
+        </div>
+        <div class="alert alert-danger alert-dismissible deposit-alert" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <span class="warning-sign"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
-            The minimum deposit is $25 due to item overstock
+            The minimum deposit is $25. Items will disappear when out of stock.
         </div>
+
         <section id="deposit-container">
             <div class="row">
                 <div class="container-fluid">
                     <div class="col-md-7" id="weapons">
-                        {{!-- <div class="row">
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="images/weapon.png" class="img-responsive" alt="">
-                                        <span class="itemName">Dual Berettas | Cobra Strike</span>
-                                        <span class="exterior">Factory New</span>
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="weapon-slot-container">
-                                    <div class="weapon-slot">
-                                        <img src="img/weapon.png" class="img-responsive" alt="">
-                                        <span class="price">$0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div></div> --}}
 
                     {{#row 3}}
                         <div class="row">
@@ -143,18 +57,23 @@
 
                     </div>
                     <div class="col-md-5" id="controls">
-                        <div id="balance"><img src="images/coins.png" alt="Balance"> <span>0.00</span></div>
-                        <div id="deposit">
-                            <button class="btn btn-primary center-block">Deposit</button>
-                            <span class="text-center">* We will grant the current average market price for your skin. We will always let you know how much you receive before the trade gets accepted</span>
-                        </div>
+                    {{#if user}}
+                    <div id="balance"><img src="images/coins.png" alt="Balance"> <span>{{parsebalance user.credits}}</span></div>
+                    {{else}}
+                    <div id="balance"><img src="images/coins.png" alt="Balance"> <span>0.00</span></div>
+                    {{/if}}
+                    <div id="deposit">
+                        <button id="depositbutton" class="btn btn-primary center-block" data-active="{{#if user}}true{{else}}false{{/if}}">Deposit</button>
+                        <span class="text-center">* We will grant the current average market price for your skin. We will always let you know how much you receive before the trade gets accepted</span>
+                    </div>
                         <div id="gift-code">
                             <input type="text" class="form-control" placeholder="Enter a gift code" aria-describedby="Gift Code" maxlength="19">
-                            <button class="btn btn-primary center-block">Redeem</button>
+                            <button class="btn btn-primary center-block" id="redeem-gift">Redeem</button>
                         </div>
                         <div id="withdraw">
                             <span id="selected">$0.00 Selected</span>
-                            <button class="btn btn-danger center-block">Withdraw</button>
+
+                            <button class="btn btn-danger center-block" data-tradeurl="{{#if true}}true{{else}}false{{/if}}" id="withdraw-button">Withdraw</button>
                         </div>
                     </div>
                 </div>

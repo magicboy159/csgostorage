@@ -36,11 +36,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="tradeurl-title">Account Settings</h4>
                  </div>
-                 <form action="/settings" method="POST">
+                 <form action="/settings/{{user.id}}" method="POST">
                     <div class="modal-body">
                        <div class="form-group">
                           <label for="tradeurl">Steam Trade-Url</label>
-                          <input type="text" class="form-control" id="tradeurl" name="tradeurl" placeholder="Trade-Url">
+                          <input type="text" class="form-control" id="tradeurl" name="tradeurl" placeholder="Trade-Url" value="{{user.tradeUrl}}">
                        </div>
                     </div>
                     <div class="modal-footer">

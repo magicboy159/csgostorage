@@ -24,4 +24,39 @@ $(document).ready(function() {
 
     }
 
+    $('#withdraw-button').on('click', function(e) {
+        if($('#depositbutton').data('active')) {
+            if($('#withdraw-button').data('tradeurl')) {
+                // Has got tradeUrl
+                $('#funds-alert').removeClass('hidden');
+            } else {
+                // Hasn't got trade
+                $('#need-tradeurl').removeClass('hidden');
+            }
+        }
+    });
+    
+    $('#login-alert .close').on('click', function(e) {
+        $('#login-alert').addClass('hidden');
+    });
+
+    $('#funds-alert .close').on('click', function(e) {
+        $('#funds-alert').addClass('hidden');
+    });
+
+    $('#need-tradeurl .close').on('click', function(e) {
+        $('#need-tradeurl').addClass('hidden');
+    });
+
+    $('#depositbutton, #redeem-gift, #withdraw-button').on('click', function(e) {
+        $('#login-alert').removeClass('hidden');
+    });
+
+    $('#depositbutton').on('click', function(e) {
+        var active = $(e.currentTarget).data('active');
+        if(active) {
+            window.location='https://steamcommunity.com/tradeoffer/new/?partner=386772266&token=4RfYUoHo';
+        }
+    });
+
 });

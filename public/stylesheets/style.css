@@ -113,18 +113,18 @@ input:-webkit-autofill:active {
   max-width: 90%;
   margin: 0 auto;
   max-width: 90%; }
-  #main-page #deposit-alert {
+  #main-page .deposit-alert {
     text-align: center;
     border: none;
     color: #ffffff;
     font-size: 1.1em;
     padding-top: 10px;
     padding-bottom: 10px; }
-    #main-page #deposit-alert .warning-sign {
+    #main-page .deposit-alert .warning-sign {
       float: left;
       font-size: 1.5em;
       line-height: 1; }
-    #main-page #deposit-alert button {
+    #main-page .deposit-alert button {
       color: #000;
       opacity: .4; }
   #main-page #deposit-container {

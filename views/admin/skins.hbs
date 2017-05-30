@@ -1,0 +1,72 @@
+<div class="panel panel-default">
+   <div class="panel-heading main-color-bg">
+      <h3 class="panel-title">Skins</h3>
+   </div>
+   <div class="panel-body">
+      <div class="row">
+         <div class="col-md-12">
+            <a href="#newskin" data-toggle="modal" class="btn btn-primary" style="margin-bottom: 1em">Add new skin</a>
+            <input class="form-control" type="text" placeholder="Filter Skins...">
+         </div>
+      </div>
+      <br>
+      <table class="table table-striped table-hover">
+         <tr>
+            <th>Name</th>
+            <th>Exterior</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th></th>
+         </tr>
+         {{#each items}}
+         {{#unless this.default}}
+         <tr>
+            <td>{{this.itemName}}</td>
+            <td>{{this.exterior}}</td>
+            <td>${{this.price}}</td>
+            <td><img src="{{this.picUrl}}" class="img-responsive" style=""></td>
+            <td><a class="btn btn-default" href="#">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+         </tr>
+         {{/unless}}
+         {{/each}}
+      </table>
+   </div>
+</div>
+<div class="modal fade" id="newskin" tabindex="-1" role="dialog" aria-labelledby="Edit">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add new skin</h4>
+         </div>
+         <div class="modal-body">
+            <form method="post" action="/admin/action/updateskin" enctype="multipart/form-data">
+               <div class="form-group">
+                  <label for="skinName">Skin name</label>
+                  <input type="text" class="form-control" id="skinName" name="skinName" placeholder="Skin name">
+               </div>
+               <div class="form-group">
+                  <label for="exterior">Exterior</label>
+                  <input type="text" class="form-control" id="exterior" name="exterior" placeholder="Exterior">
+               </div>
+               <div class="form-group">
+                  <label for="exterior">Price</label>
+                  <div class="input-group">
+                     <span class="input-group-addon">$</span>
+                     <input type="text" class="form-control" id="price" name="price" placeholder="20.00">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="exampleInputFile">Skin Image</label>
+                  <input type="file" id="skinImage" name="skinImage">
+               </div>
+               {{!-- <button type="submit" class="btn btn-default">Submit</button> --}}
+            </form>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            {{!-- <button id="edituser" type="submit" class="btn btn-primary">Save Changes</button> --}}
+         </div>
+      </div>
+   </div>
+</div>

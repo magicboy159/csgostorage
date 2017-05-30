@@ -14,7 +14,7 @@ var userSchema = mongoose.Schema({
         type: String,
     },
     tradeUrl: {
-        type: String
+        type: String,
     },
     credits: {
         type: Number,
@@ -60,6 +60,16 @@ module.exports.createUser = function(newUser, callback) {
     })
 }
 
+module.exports.updateUser = function(id, update, callback) {
+    User.updateOne({_id: id}, update, function(err, raw) {
+        if(err) {
+            throw err
+        }
+
+        callback(raw);
+    })
+}
+
 module.exports.getUsers = function(callback) {
-    User.find({}).sort({joined: -1}).limit(5).exec(callback);
+    User.find({}).sort({joined: -1}).exec(callback);
 }
