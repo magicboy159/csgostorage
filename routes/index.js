@@ -231,16 +231,11 @@ module.exports = function(passport) {
 
     router.post('/offers/trialpay/callback', function(req, res) {
         console.log(req.body);
-        res.redirect('/');
     });
 
     var upload = multer({storage: storage}).any();
     router.post('/admin/action/updateskin', function(req, res) {
-        upload(req, res, function(err) {
-            if(err) {
-                console.log(err);
-            }
-        })
+        res.send(req.body);
     });
 
     router.get('/admin/action/:action/:userid?', function(req, res) {
