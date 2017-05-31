@@ -21,7 +21,7 @@ var Sitedata = require('../models/sitedata');
 
 module.exports = function(passport) {
 
-    // router.use('/admin/*', requiresAdmin);
+    router.use('/admin/*', requiresAdmin);
     router.use(closed);
 
     router.use(function(req, res, next) {

@@ -5,7 +5,6 @@
    <div class="panel-body">
       <div class="row">
          <div class="col-md-12">
-            <a href="#newskin" data-toggle="modal" class="btn btn-primary" style="margin-bottom: 1em">Add new skin</a>
             <input class="form-control" type="text" placeholder="Filter Skins...">
          </div>
       </div>
@@ -25,14 +24,14 @@
             <td>{{this.exterior}}</td>
             <td>${{this.price}}</td>
             <td><img src="{{this.picUrl}}" class="img-responsive" style=""></td>
-            <td><a class="btn btn-default" href="#">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+            <td><a class="btn btn-default" href="#editskin">Edit</a></td>
          </tr>
          {{/unless}}
          {{/each}}
       </table>
    </div>
 </div>
-<div class="modal fade" id="newskin" tabindex="-1" role="dialog" aria-labelledby="Edit">
+<div class="modal fade" id="editskin" tabindex="-1" role="dialog" aria-labelledby="Edit">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
