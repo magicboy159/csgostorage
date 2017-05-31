@@ -21,7 +21,7 @@ var Sitedata = require('../models/sitedata');
 
 module.exports = function(passport) {
 
-    router.use('/admin/*', requiresAdmin);
+    // router.use('/admin/*', requiresAdmin);
     router.use(closed);
 
     router.use(function(req, res, next) {
@@ -220,6 +220,20 @@ module.exports = function(passport) {
         });
     });
 
+    router.get('/admin/giftcodes', function(req, res) {
+        res.render('./admin/giftcodes', {
+            layout: 'adminpanel',
+            page: {
+                giftcodes: true
+            }
+        });
+    });
+
+    router.post('/offers/trialpay/callback', function(req, res) {
+        console.log(req.body);
+        res.redirect('/');
+    });
+
     var upload = multer({storage: storage}).any();
     router.post('/admin/action/updateskin', function(req, res) {
         upload(req, res, function(err) {
@@ -263,12 +277,20 @@ module.exports = function(passport) {
             }
 
             User.updateUser(userId, update, function(raw) {
-                console.log(raw);
-            })
+                res.redirect('/admin/users');
+            });
                 
         }
 
-        res.redirect('/admin/users');
+        if((action === 'editgiftcode') && userId) {
+
+        }
+
+        if(action === 'addgiftcode') {
+
+        }
+
+        
     });
     
 

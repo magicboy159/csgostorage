@@ -47,17 +47,18 @@ module.exports.createUser = function(newUser, callback) {
         }
 
         if(user) {
-            callback(null, false, true);
+            return callback(null, false, true);
         }
-    });
-    bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(newUser.password, salt, function(err, hash) {
-            newUser.password = hash;
-            newUser.save(function(err, user) {
-                callback(err, user, null);
+
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(newUser.password, salt, function(err, hash) {
+                newUser.password = hash;
+                newUser.save(function(err, user) {
+                    return callback(err, user, null);
+                });
             });
         });
-    })
+    });
 }
 
 module.exports.updateUser = function(id, update, callback) {

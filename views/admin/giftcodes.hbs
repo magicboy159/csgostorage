@@ -1,0 +1,134 @@
+<div class="panel panel-default">
+   <div class="panel-heading main-color-bg">
+      <h3 class="panel-title">Gift Codes</h3>
+   </div>
+   <div class="panel-body">
+      <div class="row">
+         <div class="col-md-12">
+            <a href="#" class="btn btn-primary" style="margin-bottom: 1em">Add Giftcode</a>
+            <input class="form-control" type="text" placeholder="Filter Giftcodes...">
+         </div>
+      </div>
+      <br>
+      <table class="table table-striped table-hover">
+         <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Worth</th>
+            <th>One Time Only</th>
+            <th></th>
+         </tr>
+         {{#each giftcodes}}
+         <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.code}}</td>
+            <td>{{this.joined}}</td>
+            <td>{{this.worth}}</td>
+            <td>{{#if this.onetime}}Yes{{else}}No{{/if}}</td>
+            <td><a class="btn btn-default" href="#editmodal" data-toggle="modal" data-giftcode="{{stringify this}}">Edit</a> <a class="btn btn-danger" href="#delmodal" data-toggle="modal" data-name="{{this.name}}" data-id="{{this.id}}">Delete</a></td>
+         </tr>
+         {{/each}}
+      </table>
+   </div>
+</div>
+
+
+<div class="modal fade" id="delmodal" tabindex="-1" role="dialog" aria-labelledby="Delete">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+         </div>
+         <div class="modal-body">
+            Are you sure you want to delete user <b id="user"></b> 
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            <a id="deleteuser" type="submit" class="btn btn-danger" href="">Delete</a>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="Edit">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Edit Giftcode</h4>
+         </div>
+         <div class="modal-body">
+            <form method="post" action="/admin/action/editgiftcode">
+               <div class="form-group">
+                  <label for="usernameField">Username</label>
+                  <input type="text" class="form-control" id="usernameField" placeholder="Username" name="username">
+               </div>
+               <div class="form-group">
+                  <label for="emailField">Email address</label>
+                  <input type="email" class="form-control" id="emailField" placeholder="Email address" name="email">
+               </div>
+               <div class="form-group">
+                  <label for="tradeUrlField">Tradeurl</label>
+                  <input type="text" class="form-control" id="tradeUrlField" placeholder="Tradeurl" name="tradeUrl">
+               </div>
+               <div class="form-group">
+                  <label for="creditsField">Credits</label>
+                  <input type="text" class="form-control" id="creditsField" placeholder="Credits" name="credits">
+               </div>
+               <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="isAdmin" id="isAdminField"> Admin
+                  </label>
+               </div>
+            
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            <button id="edituser" type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="Edit">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Edit Giftcode</h4>
+         </div>
+         <div class="modal-body">
+            <form method="post" action="/admin/action/editgiftcode">
+               <div class="form-group">
+                  <label for="usernameField">Username</label>
+                  <input type="text" class="form-control" id="usernameField" placeholder="Username" name="username">
+               </div>
+               <div class="form-group">
+                  <label for="emailField">Email address</label>
+                  <input type="email" class="form-control" id="emailField" placeholder="Email address" name="email">
+               </div>
+               <div class="form-group">
+                  <label for="tradeUrlField">Tradeurl</label>
+                  <input type="text" class="form-control" id="tradeUrlField" placeholder="Tradeurl" name="tradeUrl">
+               </div>
+               <div class="form-group">
+                  <label for="creditsField">Credits</label>
+                  <input type="text" class="form-control" id="creditsField" placeholder="Credits" name="credits">
+               </div>
+               <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="isAdmin" id="isAdminField"> Admin
+                  </label>
+               </div>
+            
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            <button id="edituser" type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>

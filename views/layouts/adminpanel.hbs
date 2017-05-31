@@ -40,6 +40,11 @@
                   {{else}}
                   <li><a href="/admin/users">Users</a></li>
                   {{/if}}
+                  {{#if page.giftcodes}}
+                  <li class="active"><a href="/admin/giftcodes">Gift Codes</a></li>
+                  {{else}}
+                  <li><a href="/admin/giftcodes">Gift Codes</a></li>
+                  {{/if}}
                </ul>
                <ul class="nav navbar-nav navbar-right">
                   <li><a href="#">Welcome, {{user.username}}</a></li>
@@ -62,6 +67,9 @@
                   {{#if page.users}}
                   <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Users<small> Manage Users</small></h1>
                   {{/if}}
+                  {{#if page.giftcodes}}
+                  <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Gift Codes<small> Manage Giftcodes</small></h1>
+                  {{/if}}
                </div>
             </div>
          </div>
@@ -78,6 +86,9 @@
                {{#if page.users}}
                <li class="active">Users</li>
                {{/if}}
+               {{#if page.giftcodes}}
+               <li class="active">Gift Codes</li>
+               {{/if}}
             </ol>
          </div>
       </section>
@@ -91,7 +102,7 @@
                      </a>
                      <a href="/admin/skins" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Skins <span class="badge">12</span></a>
                      <a href="/admin/users" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">{{users.length}}</span></a>
-                     <a href="/admin/giftcodes" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Gift Codes <span class="badge">{{users.length}}</span></a>
+                     <a href="/admin/giftcodes" class="list-group-item"><span class="fa fa-gift" aria-hidden="true"></span> Gift Codes <span class="badge">{{giftcodes.length}}</span></a>
                   </div>
                   <div class="well">
                      <h4>Disk Space Used</h4>
