@@ -24,7 +24,7 @@
             <td>{{this.exterior}}</td>
             <td>${{this.price}}</td>
             <td><img src="{{this.picUrl}}" class="img-responsive" style=""></td>
-            <td><a class="btn btn-default" href="#editskin">Edit</a></td>
+            <td><a class="btn btn-default" href="#editskin" data-toggle="modal">Edit</a></td>
          </tr>
          {{/unless}}
          {{/each}}
@@ -36,7 +36,7 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add new skin</h4>
+            <h4 class="modal-title" id="myModalLabel">Edit skin</h4>
          </div>
          <div class="modal-body">
             <form method="post" action="/admin/action/updateskin" enctype="multipart/form-data">
@@ -59,7 +59,7 @@
                   <label for="exampleInputFile">Skin Image</label>
                   <input type="file" id="skinImage" name="skinImage">
                </div>
-               {{!-- <button type="submit" class="btn btn-default">Submit</button> --}}
+               <button type="submit" class="btn btn-default">Submit</button>
             </form>
          </div>
          <div class="modal-footer">

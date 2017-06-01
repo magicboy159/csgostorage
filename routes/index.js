@@ -6,10 +6,10 @@ var multer = require('multer');
 var path = require('path');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../uploads'));
+    cb(null, '/uploads');
   },
   filename: function (req, file, cb) {
-    cb(null, 'Skin');
+    cb(null, file.fieldname+'-'+Data.now()+'.jpg');
   }
 })
 
@@ -257,6 +257,8 @@ module.exports = function(passport) {
             });
         }
     });
+
+    var upload = multer({ storage: storage }).single()
 
     router.post('/admin/action/:action/:userid?', function(req, res) {
         var action = req.params.action;
