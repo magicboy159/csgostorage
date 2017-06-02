@@ -35,4 +35,39 @@ $(document).ready(function() {
         $(e.currentTarget).find('#user')[0].innerText = username;
         $(e.currentTarget).find('#tradeUrl').val(tradeUrl);
     });
+
+    $('#editskin').on('show.bs.modal', function(e) {
+        var skin = $(e.relatedTarget).data('skin');
+        var skinid = skin._id;
+        var skinName = skin.itemName;
+        var exterior = skin.exterior;
+        var price = skin.price;
+        var picUrl = skin.picUrl;
+
+        $(e.currentTarget).find('form').attr('action', '/admin/action/updateskin/'+skinid);
+        $(e.currentTarget).find('#skinName').val(skinName);
+        $('select option:contains("'+exterior+'")').prop('selected', true);
+        console.log($('select option:contains("'+exterior+'")'));
+        $(e.currentTarget).find('#price').val(price);
+        $(e.currentTarget).find('#skinPreview').attr('src', picUrl);
+
+
+    });
+
+    $('#skinImage').on('change', function() {
+        readURL(this);
+    });
+
+    function readURL(input) {
+
+    if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#skinPreview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 });

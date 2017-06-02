@@ -17,6 +17,16 @@ module.exports.getItems = function(callback) {
     Item.find({}).exec(callback);
 }
 
+module.exports.updateItem = function(id, update, callback) {
+    Item.updateOne({_id: id}, update, function(err, raw) {
+        if(err) {
+            throw err
+        }
+
+        callback(raw);
+    })
+}
+
 module.exports.resetItems = function() {
     Item.remove({}, function(err) {
         for (var i = 0; i < 12; i++) {
@@ -34,3 +44,4 @@ module.exports.resetItems = function() {
         }
     });
 }
+

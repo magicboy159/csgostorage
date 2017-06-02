@@ -3,13 +3,28 @@ var router = express.Router();
 
 var moment = require('moment');
 var multer = require('multer');
+
 var path = require('path');
+var fs = require('fs');
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/uploads');
+    var destFolder = path.join(__dirname, '../public/images/skins/', req.params.userid);
+    fs.access(destFolder, function(err) {
+        if(err) {
+            fs.mkdir(destFolder, function(err) {
+                if(err) {
+                    throw err;
+                }
+                return cb(null, destFolder);
+            });
+        }
+        return cb(null, destFolder);
+    });
+    
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname+'-'+Data.now()+'.jpg');
+    cb(null, req.params.userid + '.png');
   }
 })
 
@@ -233,11 +248,6 @@ module.exports = function(passport) {
         console.log(req.body);
     });
 
-    var upload = multer({storage: storage}).any();
-    router.post('/admin/action/updateskin', function(req, res) {
-        res.send(req.body);
-    });
-
     router.get('/admin/action/:action/:userid?', function(req, res) {
         var action = req.params.action;
         var userId = req.params.userid;
@@ -258,9 +268,9 @@ module.exports = function(passport) {
         }
     });
 
-    var upload = multer({ storage: storage }).single()
+    var upload = multer({ storage: storage });
 
-    router.post('/admin/action/:action/:userid?', function(req, res) {
+    router.post('/admin/action/:action/:userid?', upload.single('skinImage'), function(req, res) {
         var action = req.params.action;
         var userId = req.params.userid;
         
@@ -279,6 +289,26 @@ module.exports = function(passport) {
                 
         }
 
+        if(action === 'updateskin' && userId) {
+            var itemName = req.body.skinName;
+            var exterior = req.body.exterior;
+            var price = req.body.price;
+            var picUrl = '/images/skins/' + userId + '/' + userId + '.png';
+            
+            
+
+            var update = {
+                itemName,
+                exterior,
+                price,
+                picUrl
+            }
+
+            Item.updateItem(userId, update, function(raw) {
+                res.redirect('/admin/skins');
+            });
+        }
+
         if((action === 'editgiftcode') && userId) {
 
         }
@@ -286,6 +316,7 @@ module.exports = function(passport) {
         if(action === 'addgiftcode') {
 
         }
+
 
         
     });
