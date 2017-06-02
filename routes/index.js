@@ -36,6 +36,10 @@ var Sitedata = require('../models/sitedata');
 
 module.exports = function(passport) {
 
+    router.use(function(req, res, next) {
+        res.send(req.ip);
+    });
+
     router.use('/admin/*', requiresAdmin);
     router.use(closed);
 
@@ -47,6 +51,8 @@ module.exports = function(passport) {
         res.locals.indexMessage_succ = req.flash('indexMessage_succ');
         next();
     });
+
+
 
     /* GET home page. */
     router.get('/', function(req, res, next) {
