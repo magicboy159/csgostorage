@@ -37,7 +37,7 @@ var Sitedata = require('../models/sitedata');
 module.exports = function(passport) {
 
     router.use(function(req, res, next) {
-        res.send(req.ip);
+        res.send(req.headers['x-forwarded-for'] || req.connection.remoteAddress);
     });
 
     router.use('/admin/*', requiresAdmin);
