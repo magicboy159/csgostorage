@@ -15,6 +15,7 @@
             <th>Email</th>
             <th>Joined</th>
             <th>Credits</th>
+            <th>IP Address</th>
             <th>TradeUrl</th>
             <th></th>
          </tr>
@@ -24,6 +25,7 @@
             <td>{{this.email}}</td>
             <td>{{this.joined}}</td>
             <td>{{this.credits}}</td>
+            <td>{{this.ip}}</td>
             <td><a data-toggle="modal" data-user="{{stringify this}}" href="#tradeUrlModal">Show</a></td>
             <td><a class="btn btn-default" href="#editmodal" data-toggle="modal" data-user="{{stringify this}}">Edit</a> <a class="btn btn-danger" href="#delmodal" data-toggle="modal" data-user="{{this.username}}" data-user-id="{{this.id}}">Delete</a></td>
          </tr>

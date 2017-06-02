@@ -36,9 +36,14 @@ module.exports = function(passport) {
                     return done(null, false, req.flash('loginMessage_fail', 'Invalid Credentials'));
                 }
 
-                req.flash('indexMessage_succ', 'You are now logged in');
+                var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-                return done(null, user);
+                User.updateUser(user._id, {ip: ip}, function(raw) {
+                    req.flash('indexMessage_succ', 'You are now logged in');
+
+                    return done(null, user);
+                });
+                
             });
         });
     }));

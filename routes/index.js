@@ -36,10 +36,6 @@ var Sitedata = require('../models/sitedata');
 
 module.exports = function(passport) {
 
-    router.use(function(req, res, next) {
-        res.send(req.headers['x-forwarded-for'] || req.connection.remoteAddress);
-    });
-
     router.use('/admin/*', requiresAdmin);
     router.use(closed);
 
@@ -213,6 +209,7 @@ module.exports = function(passport) {
                 user.tradeUrl = users[i].tradeUrl;
                 user.id = users[i].id;
                 user.isAdmin = users[i].isAdmin;
+                user.ip = users[i].ip;
                 editedUsers.push(user);
             }
             res.render('./admin/users', {

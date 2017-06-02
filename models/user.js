@@ -24,6 +24,10 @@ var userSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    ip: {
+        type: String,
+        default: 'Not set'
+    },
     isAdmin: {
         type: Boolean,
         default: false
