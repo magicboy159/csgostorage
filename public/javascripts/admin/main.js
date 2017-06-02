@@ -54,6 +54,45 @@ $(document).ready(function() {
 
     });
 
+    $('#searchUsers').on('keyup', function(e) {
+        var input = $(e.currentTarget);
+        var filter = input.val().toUpperCase();
+        var table = $('table');
+        var tr = $('tr');
+        var td;
+
+        for(var i = 0; i < tr.length; i++) {
+            var td = $(tr[i]).find('td')[0];
+            if(td) {
+                if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    });
+
+    $('#searchSkins').on('keyup', function(e) {
+        var input = $(e.currentTarget);
+        var filter = input.val().toUpperCase();
+        var table = $('table');
+        var tr = $('tr');
+        var td;
+
+        for(var i = 0; i < tr.length; i++) {
+            var td = $(tr[i]).find('td')[0];
+            if(td) {
+                if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    });
+
+
     $('#skinImage').on('change', function() {
         readURL(this);
     });
